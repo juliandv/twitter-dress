@@ -7,7 +7,6 @@
 #include <avr/power.h>
 #endif
 
-
 // BEGIN NEOPIXEL CODE
 #define PIN 6
 #define NUM_LEDS 4
@@ -51,27 +50,30 @@ Process p;
 
 char go_buffer[2];
 // still not sure if I should have used a bool instead
-// btw with int I can handle more states
+// with int I can handle more states
 int  go = 0;
 
 void setup() {
 
+  // hardware initialization
   strip.setBrightness(BRIGHTNESS);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
-
-  // hardware initialization
   pinMode(buzzer, OUTPUT);
   pinMode(led, OUTPUT);
 
   Bridge.begin(); // Initialize the Bridge Library
-
   p.runShellCommand(kill_command);   // Kill all running python scripts if any
-
   p.runShellCommandAsynchronously(python_command);
 }
 
 void loop() {
+
+
+  if (switch) {
+
+  }
+  }
   // read the "go" Bridge var and copies it into the go_buffer variable
   Bridge.get("go", go_buffer, 2);
 
