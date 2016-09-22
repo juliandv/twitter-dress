@@ -2,50 +2,40 @@
 // Copyright (c) 2015 Stefano Guglielmetti - jeko@jeko.net
 // https://github.com/amicojeko
 
+/**
+ * Neopixel Library
+ */
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
 #include <avr/power.h>
 #endif
-
-// BEGIN NEOPIXEL CODE
-#define PIN 6
-#define NUM_LEDS 4
-#define BRIGHTNESS 50
-
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRBW + NEO_KHZ800);
-int gamma[] = {
-  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
-  1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
-  2,  3,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  5,  5,  5,
-  5,  6,  6,  6,  6,  7,  7,  7,  7,  8,  8,  8,  9,  9,  9, 10,
-  10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
-  17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
-  25, 26, 27, 27, 28, 29, 29, 30, 31, 32, 32, 33, 34, 35, 35, 36,
-  37, 38, 39, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50,
-  51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68,
-  69, 70, 72, 73, 74, 75, 77, 78, 79, 81, 82, 83, 85, 86, 87, 89,
-  90, 92, 93, 95, 96, 98, 99, 101, 102, 104, 105, 107, 109, 110, 112, 114,
-  115, 117, 119, 120, 122, 124, 126, 127, 129, 131, 133, 135, 137, 138, 140, 142,
-  144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 167, 169, 171, 173, 175,
-  177, 180, 182, 184, 186, 189, 191, 193, 196, 198, 200, 203, 205, 208, 210, 213,
-  215, 218, 220, 223, 225, 228, 231, 233, 236, 239, 241, 244, 247, 249, 252, 255
-};
-
-// END NEOPIXEL
-
-
+/**
+ * Twitter Library
+ */
 #include <Bridge.h>
 #include <Process.h>
 
-const int led    = 13; // LED Pin 13
-const int buzzer = 9;  // buzzer to arduino pin 9
+/**
+ * Neopixel Variables
+ */
+#define Pixels 15
 
-// set folder directory of python scripts
-const String SCRIPT_DIR = "/root/python/TwitterBlink/";
+Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels, 1, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(Pixels, 3, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(Pixels, 4, NEO_GRB + NEO_KHZ800);
 
+float blueStates[Pixels];
+float greenStates[Pixels];
+float fadeRate = 0.96;
+
+/**
+ * Twitter Variables
+ */
+const String SCRIPT_DIR = "/root/python/TwitterBlink/";    //Set folder directory of python scripts
 const String python_command = "/usr/bin/python " + SCRIPT_DIR + "streaming.py";
 const String kill_command = SCRIPT_DIR + "kill_processes.sh";
+
 Process p;
 
 char go_buffer[2];
@@ -53,14 +43,40 @@ char go_buffer[2];
 // with int I can handle more states
 int  go = 0;
 
+/**
+ * General Variables
+ */
+int phase;
+
+const int PIN_PHASE_1 = 5;         //Phase 1 - Constant Twinkle switch pin
+const int PIN_PHASE_2 = 6;         //Phase 2 - Twitter switch pin
+const int PIN_PHASE_3 = 7;         //Phase 3 - Off pin
+
 void setup() {
 
-  // hardware initialization
-  strip.setBrightness(BRIGHTNESS);
-  strip.begin();
-  strip.show(); // Initialize all pixels to 'off'
-  pinMode(buzzer, OUTPUT);
-  pinMode(led, OUTPUT);
+  pinMode(PIN_PHASE_1, INPUT);
+  pinMode(PIN_PHASE_2, INPUT);
+  pinMode(PIN_PHASE_3, INPUT);
+
+  phase = 3;                      //Start with lights off/phase 3
+
+  strip_1.begin();
+  strip_1.show();
+
+  strip_2.begin();
+  strip_2.show();
+
+  strip_3.begin();
+  strip_3.show();
+
+  strip_4.begin();
+  strip_4.show();
+
+
+  for (uint16_t l = 0; l < Pixels; l++) {
+    greenStates[l] = 0;
+    blueStates[l] = 0;
+  }
 
   Bridge.begin(); // Initialize the Bridge Library
   p.runShellCommand(kill_command);   // Kill all running python scripts if any
@@ -69,21 +85,55 @@ void setup() {
 
 void loop() {
 
-
-  if (switch) {
-
-  }
-  }
-  // read the "go" Bridge var and copies it into the go_buffer variable
-  Bridge.get("go", go_buffer, 2);
-
-  // convert the bugger into an int variable (should I have used bool instead?)
-  go = atoi(go_buffer);
-
-  if (go == 1) {
-    newTweet();
-  } else {
-    delay(50);
-  }
-
+  checkSwitches();     //Check which phase is switched on
+  switchPhases();      //Execute phase
 }
+
+/**
+ * Checks pin connection as switch and changes phases accordingly
+ */
+void checkSwitches() {
+
+    if ( PIN_PHASE_1 == HIGH ) {     //If connection is made, switch phases
+    phase = 1;  //Constant twinkle
+  }
+
+  if ( PIN_PHASE_2 == HIGH ) {
+    phase = 2;  //Twitter
+  }
+
+  if ( PIN_PHASE_3 == HIGH ) {
+    phase = 3;  //Off
+  }
+}
+
+/**
+ * Takes number of phase and executes
+ */
+void switchPhases() {
+
+    switch ( phase )
+  {
+    case 1: //Constant Twinkle
+      constantTwinkle();
+    break;
+    case 2: //Twitter
+      //Read the "go" Bridge var and copies it into the go_buffer variable
+      Bridge.get("go", go_buffer, 2);
+
+      //Convert the bugger into an int variable (should I have used bool instead?)
+      go = atoi(go_buffer);
+
+      if (go == 1) {
+        newTweet();
+      } else {
+        delay(50);
+      }
+      break;
+      case 3: //Off
+      //Do nothing
+      break;
+  }
+}
+
+
