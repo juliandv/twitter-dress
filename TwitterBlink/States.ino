@@ -2,16 +2,18 @@
  * Checks pin connection as switch and changes phases accordingly
  */
 void checkSwitches() {
+  phase1  = digitalRead(PHASE_1_BTN);       // read buttons
+  phase2 = digitalRead(PHASE_2_BTN);
 
-    if ( PIN_PHASE_1 == HIGH ) {     //If connection is made, switch phases
+    if ( phase1 == HIGH ) {     //If connection is made, switch phases
     phase = 1;  //Constant twinkle
   }
 
-  if ( PIN_PHASE_2 == HIGH ) {
+  if ( phase1 == LOW ) {
     phase = 2;  //Twitter
   }
 
-  if ( PIN_PHASE_3 == HIGH ) {
+  if ( phase2 == HIGH ) {
     phase = 3;  //Off
   }
 }
