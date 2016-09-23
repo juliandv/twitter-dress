@@ -20,10 +20,10 @@
  */
 #define Pixels 15
 
-Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels, 1, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels, 2, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(Pixels, 3, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(Pixels, 4, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels, 4, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(Pixels, 7, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(Pixels, 8, NEO_GRB + NEO_KHZ800);
 
 float blueStates[Pixels];
 float greenStates[Pixels];
@@ -50,14 +50,16 @@ int phase = 1;  //Start with constant twinkle
 
 const int PHASE_1_BTN = 5;         //Phase 1 - Constant Twinkle and Twitter switch pin
 const int PHASE_2_BTN = 6;     //Phase 2 - Off
+int phase1;
+int phase2;
 
 void setup() {
 
     // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
 
-  pinMode(PHASE_1, INPUT_PULLUP);
-  pinMode(PHASE_2, INPUT_PULLUP);
+  pinMode(PHASE_1_BTN, INPUT_PULLUP);
+  pinMode(PHASE_2_BTN, INPUT_PULLUP);
 
   strip_1.begin();
   strip_1.show();
@@ -84,7 +86,7 @@ void setup() {
 
 void loop() {
 
-  checkSwitches();     //Check which phase is switched on
+//  checkSwitches();     //Check which phase is switched on
   switchPhases();      //Execute phase
 }
 
