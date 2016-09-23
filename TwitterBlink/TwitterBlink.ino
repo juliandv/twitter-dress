@@ -46,19 +46,18 @@ int  go = 0;
 /**
  * General Variables
  */
-int phase;
+int phase = 1;  //Start with constant twinkle
 
-const int PIN_PHASE_1 = 5;         //Phase 1 - Constant Twinkle switch pin
-const int PIN_PHASE_2 = 6;         //Phase 2 - Twitter switch pin
-const int PIN_PHASE_3 = 7;         //Phase 3 - Off pin
+const int PHASE_1_BTN = 5;         //Phase 1 - Constant Twinkle and Twitter switch pin
+const int PHASE_2_BTN = 6;     //Phase 2 - Off
 
 void setup() {
 
-  pinMode(PIN_PHASE_1, INPUT);
-  pinMode(PIN_PHASE_2, INPUT);
-  pinMode(PIN_PHASE_3, INPUT);
+    // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
 
-  phase = 3;                      //Start with lights off/phase 3
+  pinMode(PHASE_1, INPUT_PULLUP);
+  pinMode(PHASE_2, INPUT_PULLUP);
 
   strip_1.begin();
   strip_1.show();
