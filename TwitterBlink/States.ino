@@ -41,9 +41,15 @@ void switchPhases() {
       go = atoi(go_buffer);
 
       if (go == 1) {
-        newTweet();
+
+  unsigned long currentMillis = millis();
+
+  if (currentMillis <= currentMills + twinkleLength) {
+      newTweet();
+  }
+  Bridge.put("go", String(0));   // reset the new tweet 'go' variable to 0
       } else {
-        delay(50);
+        delay(30); // or else wait
       }
       break;
       case 3: //Off
