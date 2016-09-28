@@ -48,7 +48,6 @@ float fadeRate = 0.96;
 const String SCRIPT_DIR = "/root/python/TwitterBlink/";    //Set folder directory of python scripts
 const String python_command = "/usr/bin/python " + SCRIPT_DIR + "streaming.py";
 const String kill_command = SCRIPT_DIR + "kill_processes.sh";
-
 Process p;
 
 char go_buffer[2];
