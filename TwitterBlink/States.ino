@@ -46,7 +46,7 @@ void switchPhases() {
         unsigned long currentMillis = millis();
         // loop twinkle code for twinkleLength mills
         if (currentMillis <= currentMillis + twinkleLength) {
-          twinkle();
+            twinkle();
         }
         Bridge.put("go", String(0));   // reset the new tweet 'go' variable to 0
       } else {
