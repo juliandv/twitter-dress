@@ -2,6 +2,13 @@
 // Copyright (c) 2015 Stefano Guglielmetti - jeko@jeko.net
 // https://github.com/amicojeko
 
+
+// TO START:
+// power Arduino Yun
+// wait 1-2 minutes for linux to boot and WiFi to connect (presuming previosuly connected WiFi is available)
+// restart the arduino side by double tapping the 32U4 button twice
+// after a few seconds, the streaming connection should be active and tweets will trigger the Neopixels
+
 /**
  * Neopixel Library
  */
@@ -60,9 +67,9 @@ int  go = 0;
  */
 int phase = 1;  //Start with constant twinkle
 
-const int twinkleLength = 5000;     //Twinkle length
-const int PHASE_1_BTN = 5;     //Phase 1 - Constant Twinkle and Twitter switch pin
-const int PHASE_2_BTN = 6;     //Phase 2 - Off
+const int twinkleLength = 2000;     //Twinkle length
+const int PHASE_1_BTN = 12;     //Phase 1 - Constant Twinkle and Twitter switch pin
+const int PHASE_2_BTN = 13;     //Phase 2 - Off
 int phase1;
 int phase2;
 
@@ -70,7 +77,7 @@ void setup() {
 
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
-
+  Serial.println("BEGIN SERIAL");
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(PHASE_1_BTN, INPUT_PULLUP);
   pinMode(PHASE_2_BTN, INPUT_PULLUP);
@@ -93,18 +100,15 @@ void setup() {
     blueStates1[l] = 0;
   }
 
-
   for (uint16_t l = 0; l < Pixels_2; l++) {
     greenStates2[l] = 0;
     blueStates2[l] = 0;
   }
 
-
   for (uint16_t l = 0; l < Pixels_3; l++) {
     greenStates3[l] = 0;
     blueStates3[l] = 0;
   }
-
 
   for (uint16_t l = 0; l < Pixels_4; l++) {
     greenStates4[l] = 0;

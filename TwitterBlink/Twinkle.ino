@@ -4,32 +4,32 @@
 
 void twinkle(){
 
-if (random(20) == 1) {
+if (random(2) == 1) {
     uint16_t i = random(Pixels_1);
     if (greenStates1[i] < 1 && blueStates1[i] < 1) {
       greenStates1[i] = 0;
-      blueStates1[i] = 150;
+      blueStates1[i] = 50;
     }
   }
-    if (random(20) == 1) {
+    if (random(2) == 1) {
     uint16_t i = random(Pixels_2);
     if (greenStates2[i] < 1 && blueStates2[i] < 1) {
       greenStates2[i] = 0;
-      blueStates2[i] = 150;
+      blueStates2[i] = 50;
     }
   }
-    if (random(20) == 1) {
+    if (random(2) == 1) {
     uint16_t i = random(Pixels_3);
     if (greenStates3[i] < 1 && blueStates3[i] < 1) {
       greenStates3[i] = 0;
-      blueStates3[i] = 150;
+      blueStates3[i] = 50;
     }
   }
-    if (random(20) == 1) {
+    if (random(2) == 1) {
     uint16_t i = random(Pixels_4);
     if (greenStates4[i] < 1 && blueStates4[i] < 1) {
       greenStates4[i] = 0;
-      blueStates4[i] = 150;
+      blueStates4[i] = 50;
     }
   }
 
@@ -116,13 +116,6 @@ if (random(20) == 1) {
       strip_4.setPixelColor(l, 0, 0, 0);
     }
   }
-
-  strip_1.show();
-  strip_2.show();
-  strip_3.show();
-  strip_4.show();
-
-  delay(1);
 
 
 }
