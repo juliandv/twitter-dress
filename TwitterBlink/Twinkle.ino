@@ -1,5 +1,5 @@
 /**
- * Twinkle lights when tweet comes in - Phase 2
+ * Neopixel twinkle code
  */
 
 void twinkle(){
