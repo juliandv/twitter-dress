@@ -18,16 +18,30 @@
 /**
  * Neopixel Variables
  */
-#define Pixels 15
+#define Pixels_1 9
+#define Pixels_2 15
+#define Pixels_3 15
+#define Pixels_4 9
 
-Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels, 2, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels, 4, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(Pixels, 7, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(Pixels, 8, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels_1, 8, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels_2, 9, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(Pixels_3, 10, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(Pixels_4, 11, NEO_GRB + NEO_KHZ800);
 
-float blueStates[Pixels];
-float greenStates[Pixels];
+float blueStates1[Pixels_1];
+float greenStates1[Pixels_1];
+
+float blueStates2[Pixels_2];
+float greenStates2[Pixels_2];
+
+float blueStates3[Pixels_3];
+float greenStates3[Pixels_3];
+
+float blueStates4[Pixels_4];
+float greenStates4[Pixels_4];
+
 float fadeRate = 0.96;
+
 
 /**
  * Twitter Variables
@@ -74,9 +88,27 @@ void setup() {
   strip_4.show();
 
 
-  for (uint16_t l = 0; l < Pixels; l++) {
-    greenStates[l] = 0;
-    blueStates[l] = 0;
+  for (uint16_t l = 0; l < Pixels_1; l++) {
+    greenStates1[l] = 0;
+    blueStates1[l] = 0;
+  }
+
+
+  for (uint16_t l = 0; l < Pixels_2; l++) {
+    greenStates2[l] = 0;
+    blueStates2[l] = 0;
+  }
+
+
+  for (uint16_t l = 0; l < Pixels_3; l++) {
+    greenStates3[l] = 0;
+    blueStates3[l] = 0;
+  }
+
+
+  for (uint16_t l = 0; l < Pixels_4; l++) {
+    greenStates4[l] = 0;
+    blueStates4[l] = 0;
   }
 
   Bridge.begin(); // Initialize the Bridge Library
@@ -86,7 +118,7 @@ void setup() {
 
 void loop() {
 
-//  checkSwitches();     //Check which phase is switched on
+  checkSwitches();     //Check which phase is switched on
   switchPhases();      //Execute phase
 }
 
