@@ -124,8 +124,6 @@ if (random(20) == 1) {
 
   delay(1);
 
-  // and resets the go variable to 0
-  // Keep this line!
-  Bridge.put("go", String(0));
+
 }
 
