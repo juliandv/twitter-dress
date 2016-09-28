@@ -1,4 +1,4 @@
-// Twitter tweet Arduino communication by:
+// Twitter tweet Arduino/linux communication by:
 // Copyright (c) 2015 Stefano Guglielmetti - jeko@jeko.net
 // https://github.com/amicojeko
 
@@ -10,7 +10,7 @@
 #include <avr/power.h>
 #endif
 /**
- * Twitter Library
+ * Bridge Library
  */
 #include <Bridge.h>
 #include <Process.h>
@@ -23,8 +23,8 @@
 #define Pixels_3 15
 #define Pixels_4 9
 
-Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels_1, 8, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels_2, 9, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels_1, 8,  NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels_2, 9,  NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(Pixels_3, 10, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(Pixels_4, 11, NEO_GRB + NEO_KHZ800);
 
@@ -42,9 +42,8 @@ float greenStates4[Pixels_4];
 
 float fadeRate = 0.96;
 
-
 /**
- * Twitter Variables
+ * Linino Python directories
  */
 const String SCRIPT_DIR = "/root/python/TwitterBlink/";    //Set folder directory of python scripts
 const String python_command = "/usr/bin/python " + SCRIPT_DIR + "streaming.py";
@@ -62,16 +61,18 @@ int  go = 0;
  */
 int phase = 1;  //Start with constant twinkle
 
-const int PHASE_1_BTN = 5;         //Phase 1 - Constant Twinkle and Twitter switch pin
+const int twinkleLength = 5000;     //Twinkle length
+const int PHASE_1_BTN = 5;     //Phase 1 - Constant Twinkle and Twitter switch pin
 const int PHASE_2_BTN = 6;     //Phase 2 - Off
 int phase1;
 int phase2;
 
 void setup() {
 
-    // initialize serial communication at 9600 bits per second:
+  // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
 
+  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(PHASE_1_BTN, INPUT_PULLUP);
   pinMode(PHASE_2_BTN, INPUT_PULLUP);
 
@@ -117,7 +118,6 @@ void setup() {
 }
 
 void loop() {
-
   checkSwitches();     //Check which phase is switched on
   switchPhases();      //Execute phase
 }
