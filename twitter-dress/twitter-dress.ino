@@ -65,7 +65,7 @@ int  go = 0;
 /**
  * General Variables
  */
-int phase = 1;  //Start with constant twinkle
+int phase;  //Start with constant twinkle
 
 const int twinkleLength = 2000;     //Twinkle length
 const int PHASE_1_BTN = 12;     //Phase 1 - Constant Twinkle and Twitter switch pin
@@ -114,6 +114,7 @@ void setup() {
     greenStates4[l] = 0;
     blueStates4[l] = 0;
   }
+  phase = 2;
 
   Bridge.begin(); // Initialize the Bridge Library
   p.runShellCommand(kill_command);   // Kill all running python scripts if any
@@ -121,7 +122,7 @@ void setup() {
 }
 
 void loop() {
-  checkSwitches();     //Check which phase is switched on
+  //checkSwitches();     //Check which phase is switched on
   switchPhases();      //Execute phase
 }
 
