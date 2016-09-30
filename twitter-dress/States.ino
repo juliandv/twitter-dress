@@ -6,22 +6,23 @@ void checkSwitches() {
   phase1  = digitalRead(PHASE_1_BTN);
   phase2 = digitalRead(PHASE_2_BTN);
 
-  if ( phase1 == LOW ) {
-    //If connection is made, switch phases
-    phase = 1;
-    //Constant twinkle
-  }
 
-  if ( phase1 == HIGH ) {
-    phase = 2;
-    //Twitter
-  }
-
-  if ( phase2 == HIGH ) {
-    phase = 3;
-    //Off
-  }
-}
+//  // if switch 2 is connected
+//  if ( phase2 == LOW ) {
+//    phase = 3;
+//    //Off
+//  } else {
+//      // if switch 1 is connected
+//      if ( phase1 == LOW ) {
+//    //If connection is made, switch phases
+//    phase = 1;
+//    //Constant twinkle
+//  } else {
+//    phase = 2;
+//    //Twitter
+//
+//  }
+//}
 
 /**
    Takes number of phase and executes
