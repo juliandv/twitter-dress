@@ -44,7 +44,7 @@ void switchPhases() {
       go = atoi(go_buffer);
 
       if (go == 1) {
-
+        digitalWrite(LED_BUILTIN, HIGH);
         // get current time since startup
         unsigned long currentMillis = millis();
         unsigned long twinkleUntil = currentMillis + twinkleLength;
@@ -56,20 +56,12 @@ void switchPhases() {
           currentMillis = millis();
         }
 
-        colorWipe1(strip_1.Color( 0, 0, 0), 50);
-        colorWipe2(strip_2.Color(0, 0, 0), 50);
-        colorWipe3(strip_3.Color(0,0,0), 50);
-        colorWipe4(strip_4.Color(0,0,0), 50);
-
-        strip_1.show();
-        strip_2.show();
-        strip_3.show();
-        strip_4.show();
-
+        turnPixelsOff();
+        digitalWrite(LED_BUILTIN, LOW);
         Bridge.put("go", String(0));   // reset the new tweet 'go' variable to 0
 
       } else {
-        delay(30); // or else wait a bit then check if there is a new tweet
+        delay(40); // or else wait a bit then check if there is a new tweet
       }
       break;
     case 3: //Off
@@ -81,25 +73,25 @@ void switchPhases() {
 }
 
 void colorWipe1(uint32_t c, uint8_t wait) {
-  for(uint16_t i=0; i<strip_1.numPixels(); i++) {
+  for (uint16_t i = 0; i < strip_1.numPixels(); i++) {
     strip_1.setPixelColor(i, c);
     strip_1.show();
   }
 }
 void colorWipe2(uint32_t c, uint8_t wait) {
-  for(uint16_t i=0; i<strip_2.numPixels(); i++) {
+  for (uint16_t i = 0; i < strip_2.numPixels(); i++) {
     strip_2.setPixelColor(i, c);
     strip_2.show();
   }
 }
 void colorWipe3(uint32_t c, uint8_t wait) {
-  for(uint16_t i=0; i<strip_3.numPixels(); i++) {
+  for (uint16_t i = 0; i < strip_3.numPixels(); i++) {
     strip_3.setPixelColor(i, c);
     strip_3.show();
   }
 }
 void colorWipe4(uint32_t c, uint8_t wait) {
-  for(uint16_t i=0; i<strip_4.numPixels(); i++) {
+  for (uint16_t i = 0; i < strip_4.numPixels(); i++) {
     strip_4.setPixelColor(i, c);
     strip_4.show();
   }
