@@ -65,7 +65,7 @@ int  go = 0;
 /**
  * General Variables
  */
-int phase;  //Start with constant twinkle
+int phase = 2;  //Start with twitter
 
 const int twinkleLength = 2000;     //Twinkle length
 const int PHASE_1_BTN = 12;     //Phase 1 - Constant Twinkle and Twitter switch pin
@@ -79,6 +79,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println("BEGIN SERIAL");
   pinMode(LED_BUILTIN, OUTPUT);
+
   pinMode(PHASE_1_BTN, INPUT_PULLUP);
   pinMode(PHASE_2_BTN, INPUT_PULLUP);
 
@@ -97,11 +98,18 @@ void setup() {
 
 turnPixelsOff();
 
-  phase = 2;
-
   Bridge.begin(); // Initialize the Bridge Library
   p.runShellCommand(kill_command);   // Kill all running python scripts if any
   p.runShellCommandAsynchronously(python_command);
+
+
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(500);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(300);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(500);
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {
