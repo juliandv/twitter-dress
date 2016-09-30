@@ -78,7 +78,7 @@ void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
   Serial.println("BEGIN SERIAL");
-  pinMode(LED_BUILTIN, OUTPUT);
+//  pinMode(LED_BUILTIN, OUTPUT);
 
   pinMode(PHASE_1_BTN, INPUT_PULLUP);
   pinMode(PHASE_2_BTN, INPUT_PULLUP);
@@ -102,13 +102,13 @@ turnPixelsOff();
   p.runShellCommandAsynchronously(python_command);
 
 
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(500);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(300);
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(500);
-  digitalWrite(LED_BUILTIN, LOW);
+//  digitalWrite(LED_BUILTIN, HIGH);
+//  delay(500);
+//  digitalWrite(LED_BUILTIN, LOW);
+//  delay(300);
+//  digitalWrite(LED_BUILTIN, HIGH);
+//  delay(500);
+//  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {

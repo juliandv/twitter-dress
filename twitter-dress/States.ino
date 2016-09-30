@@ -46,7 +46,7 @@ void switchPhases() {
       go = atoi(go_buffer);
 
       if (go == 1) {
-        digitalWrite(LED_BUILTIN, HIGH);
+//        digitalWrite(LED_BUILTIN, HIGH);
         // get current time since startup
         unsigned long currentMillis = millis();
         unsigned long twinkleUntil = currentMillis + twinkleLength;
@@ -59,7 +59,7 @@ void switchPhases() {
         }
 
         turnPixelsOff();
-        digitalWrite(LED_BUILTIN, LOW);
+//        digitalWrite(LED_BUILTIN, LOW);
         Bridge.put("go", String(0));   // reset the new tweet 'go' variable to 0
 
       } else {
