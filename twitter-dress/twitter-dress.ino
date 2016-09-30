@@ -67,9 +67,9 @@ int  go = 0;
  */
 int phase = 2;  //Start with twitter
 
-const int twinkleLength = 2000;     //Twinkle length
+const int twinkleLength = 2000; //Twinkle length
 const int PHASE_1_BTN = 12;     //Phase 1 - Constant Twinkle and Twitter switch pin
-const int PHASE_2_BTN = 2;     //Phase 2 - Off
+const int PHASE_2_BTN = 2;      //Phase 2 - Off
 int phase1;
 int phase2;
 
