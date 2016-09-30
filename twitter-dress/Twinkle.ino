@@ -1,34 +1,34 @@
 /**
- * Neopixel twinkle code
- */
+   Neopixel twinkle code
+*/
 
-void twinkle(){
+void twinkle() {
 
-if (random(2) == 1) {
+  if (random(2) == 1) {
     uint16_t i = random(Pixels_1);
     if (greenStates1[i] < 1 && blueStates1[i] < 1) {
-      greenStates1[i] = 0;
+      greenStates1[i] = 25;
       blueStates1[i] = 50;
     }
   }
-    if (random(2) == 1) {
+  if (random(2) == 1) {
     uint16_t i = random(Pixels_2);
     if (greenStates2[i] < 1 && blueStates2[i] < 1) {
-      greenStates2[i] = 0;
+      greenStates2[i] = 25;
       blueStates2[i] = 50;
     }
   }
-    if (random(2) == 1) {
+  if (random(2) == 1) {
     uint16_t i = random(Pixels_3);
     if (greenStates3[i] < 1 && blueStates3[i] < 1) {
-      greenStates3[i] = 0;
+      greenStates3[i] = 25;
       blueStates3[i] = 50;
     }
   }
-    if (random(2) == 1) {
+  if (random(2) == 1) {
     uint16_t i = random(Pixels_4);
     if (greenStates4[i] < 1 && blueStates4[i] < 1) {
-      greenStates4[i] = 0;
+      greenStates4[i] = 25;
       blueStates4[i] = 50;
     }
   }
@@ -54,9 +54,9 @@ if (random(2) == 1) {
     }
   }
 
-    for (uint16_t l = 0; l < Pixels_2; l++) {
+  for (uint16_t l = 0; l < Pixels_2; l++) {
     if (greenStates2[l] > 1 || blueStates2[l] > 1) {
-      strip_2.setPixelColor(l, 0, greenStates2[l], blueStates2[l]);
+strip_2.setPixelColor(l, 0, greenStates2[l], blueStates2[l]);
 
       if (greenStates2[l] > 1) {
         greenStates2[l] = greenStates2[l] * fadeRate;
@@ -75,7 +75,7 @@ if (random(2) == 1) {
     }
   }
 
-    for (uint16_t l = 0; l < Pixels_3; l++) {
+  for (uint16_t l = 0; l < Pixels_3; l++) {
     if (greenStates3[l] > 1 || blueStates3[l] > 1) {
       strip_3.setPixelColor(l, 0, greenStates3[l], blueStates3[l]);
 
@@ -96,7 +96,7 @@ if (random(2) == 1) {
     }
   }
 
-    for (uint16_t l = 0; l < Pixels_4; l++) {
+  for (uint16_t l = 0; l < Pixels_4; l++) {
     if (greenStates4[l] > 1 || blueStates4[l] > 1) {
       strip_4.setPixelColor(l, 0, greenStates4[l], blueStates4[l]);
 
@@ -116,6 +116,11 @@ if (random(2) == 1) {
       strip_4.setPixelColor(l, 0, 0, 0);
     }
   }
+
+  strip_1.show();
+  strip_2.show();
+  strip_3.show();
+  strip_4.show();
 
 
 }
