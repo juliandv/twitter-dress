@@ -2,8 +2,8 @@
    Checks pin connection as switch and changes phases accordingly
 */
 void checkSwitches() {
-  phase1  = digitalRead(PHASE_1_BTN);
   // read buttons
+  phase1  = digitalRead(PHASE_1_BTN);
   phase2 = digitalRead(PHASE_2_BTN);
 
   if ( phase1 == LOW ) {
@@ -17,7 +17,7 @@ void checkSwitches() {
     //Twitter
   }
 
-  if ( phase2 == LOW ) {
+  if ( phase2 == HIGH ) {
     phase = 3;
     //Off
   }

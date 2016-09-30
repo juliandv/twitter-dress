@@ -69,7 +69,7 @@ int phase = 2;  //Start with twitter
 
 const int twinkleLength = 2000;     //Twinkle length
 const int PHASE_1_BTN = 12;     //Phase 1 - Constant Twinkle and Twitter switch pin
-const int PHASE_2_BTN = 13;     //Phase 2 - Off
+const int PHASE_2_BTN = 2;     //Phase 2 - Off
 int phase1;
 int phase2;
 
@@ -95,7 +95,6 @@ void setup() {
   strip_4.begin();
   strip_4.show();
 
-
 turnPixelsOff();
 
   Bridge.begin(); // Initialize the Bridge Library
@@ -113,7 +112,7 @@ turnPixelsOff();
 }
 
 void loop() {
-  //checkSwitches();     //Check which phase is switched on
+  checkSwitches();     //Check which phase is switched on
   switchPhases();      //Execute phase
 }
 
