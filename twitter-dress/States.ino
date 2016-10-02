@@ -35,7 +35,7 @@ void switchPhases() {
     case 1: //Constant Twinkle
       Serial.println("CONSTANT TWINKLE STATE");
 
-      twinkle();
+      constantTwinkle();
       break;
     case 2: //Twitter
       Serial.println("TWITTER STATE");
