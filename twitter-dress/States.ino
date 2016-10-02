@@ -3,17 +3,17 @@
 */
 void checkSwitches() {
   // read buttons
-  phase1  = digitalRead(PHASE_1_BTN);
-  phase2 = digitalRead(PHASE_2_BTN);
+  button1 = digitalRead(PHASE_1_BTN);
+  button2 = digitalRead(PHASE_2_BTN);
 
 
   // if switch 2 is connected
-  if ( phase2 == LOW ) {
+  if ( button2 == LOW ) {
     phase = 3;
     //Off
   } else {
     // if switch 1 is connected
-    if ( phase1 == LOW ) {
+    if ( button1 == LOW ) {
       //If connection is made, switch phases
       phase = 1;
       //Constant twinkle
