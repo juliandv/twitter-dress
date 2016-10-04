@@ -27,8 +27,8 @@
  */
 #define Pixels_1 9
 #define Pixels_2 15
-#define Pixels_3 15
-#define Pixels_4 9
+#define Pixels_3 14
+#define Pixels_4 8
 
 Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(Pixels_1, 8,  NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(Pixels_2, 9,  NEO_GRB + NEO_KHZ800);
@@ -78,7 +78,7 @@ void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
   Serial.println("BEGIN SERIAL");
-//  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
 
   pinMode(PHASE_1_BTN, INPUT_PULLUP);
   pinMode(PHASE_2_BTN, INPUT_PULLUP);
@@ -102,13 +102,13 @@ turnPixelsOff();
   p.runShellCommandAsynchronously(python_command);
 
 
-//  digitalWrite(LED_BUILTIN, HIGH);
-//  delay(500);
-//  digitalWrite(LED_BUILTIN, LOW);
-//  delay(300);
-//  digitalWrite(LED_BUILTIN, HIGH);
-//  delay(500);
-//  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(500);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(300);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(500);
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {
