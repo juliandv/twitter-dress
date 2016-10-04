@@ -1,29 +1,29 @@
 /**
    Checks pin connection as switch and changes phases accordingly
 */
-void checkSwitches() {
-  // read buttons
-  button1 = digitalRead(PHASE_1_BTN);
-  button2 = digitalRead(PHASE_2_BTN);
-
-
-  // if switch 2 is connected
-  if ( button2 == LOW ) {
-    phase = 3;
-    //Off
-  } else {
-    // if switch 1 is connected
-    if ( button1 == LOW ) {
-      //If connection is made, switch phases
-      phase = 1;
-      //Constant twinkle
-    } else {
-      phase = 2;
-      //Twitter
-
-    }
-  }
-}
+//void checkSwitches() {
+//  // read buttons
+//  button1 = digitalRead(PHASE_1_BTN);
+//  button2 = digitalRead(PHASE_2_BTN);
+//
+//
+//  // if switch 2 is connected
+//  if ( button2 == LOW ) {
+//    phase = 3;
+//    //Off
+//  } else {
+//    // if switch 1 is connected
+//    if ( button1 == LOW ) {
+//      //If connection is made, switch phases
+//      phase = 1;
+//      //Constant twinkle
+//    } else {
+//      phase = 2;
+//      //Twitter
+//
+//    }
+//  }
+//}
 
 /**
    Takes number of phase and executes

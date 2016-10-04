@@ -65,13 +65,15 @@ int  go = 0;
 /**
  * General Variables
  */
-int phase = 2;  //Start with twitter
+int phase = 1;
+// constant = 1;
+// twitter = 2;
 
 const int twinkleLength = 2000; //Twinkle length
-const int PHASE_1_BTN = 12;     //Phase 1 - Constant Twinkle and Twitter switch pin
-const int PHASE_2_BTN = 2;      //Phase 2 - Off
-int button1;
-int button2;
+//const int PHASE_1_BTN = 12;     //Phase 1 - Constant Twinkle and Twitter switch pin
+//const int PHASE_2_BTN = 2;      //Phase 2 - Off
+//int button1;
+//int button2;
 
 void setup() {
 
@@ -80,8 +82,8 @@ void setup() {
   Serial.println("BEGIN SERIAL");
   pinMode(LED_BUILTIN, OUTPUT);
 
-  pinMode(PHASE_1_BTN, INPUT_PULLUP);
-  pinMode(PHASE_2_BTN, INPUT_PULLUP);
+//  pinMode(PHASE_1_BTN, INPUT_PULLUP);
+//  pinMode(PHASE_2_BTN, INPUT_PULLUP);
 
   strip_1.begin();
   strip_1.show();
@@ -112,7 +114,6 @@ turnPixelsOff();
 }
 
 void loop() {
-  checkSwitches();     //Check which phase is switched on
   switchPhases();      //Execute phase
 }
 

@@ -4,32 +4,32 @@
 
 void constantTwinkle() {
 
-  if (random(2) == 1) {
+  if (random(20) == 1) {
     uint16_t i = random(Pixels_1);
     if (greenStates1[i] < 1 && blueStates1[i] < 1) {
-      greenStates1[i] = 25;
-      blueStates1[i] = 50;
+      greenStates1[i] = 15;
+      blueStates1[i] = 25;
     }
   }
-  if (random(2) == 1) {
+  if (random(20) == 1) {
     uint16_t i = random(Pixels_2);
     if (greenStates2[i] < 1 && blueStates2[i] < 1) {
-      greenStates2[i] = 25;
-      blueStates2[i] = 50;
+      greenStates1[i] = 15;
+      blueStates1[i] = 25;
     }
   }
-  if (random(2) == 1) {
+  if (random(20) == 1) {
     uint16_t i = random(Pixels_3);
     if (greenStates3[i] < 1 && blueStates3[i] < 1) {
-      greenStates3[i] = 25;
-      blueStates3[i] = 50;
+      greenStates1[i] = 15;
+      blueStates1[i] = 25;
     }
   }
-  if (random(2) == 1) {
+  if (random(20) == 1) {
     uint16_t i = random(Pixels_4);
     if (greenStates4[i] < 1 && blueStates4[i] < 1) {
-      greenStates4[i] = 25;
-      blueStates4[i] = 50;
+      greenStates1[i] = 15;
+      blueStates1[i] = 25;
     }
   }
 
