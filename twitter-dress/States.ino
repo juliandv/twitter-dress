@@ -37,34 +37,34 @@ void switchPhases() {
 
       constantTwinkle();
       break;
-    case 2: //Twitter
-      Serial.println("TWITTER STATE");
+//    case 2: //Twitter
+//      Serial.println("TWITTER STATE");
+//
+//      //Read the "go" Bridge var and copies it into the go_buffer variable
+//      Bridge.get("go", go_buffer, 2);
+//      //Convert the bugger into an int variable (should I have used bool instead?)
+//      go = atoi(go_buffer);
 
-      //Read the "go" Bridge var and copies it into the go_buffer variable
-      Bridge.get("go", go_buffer, 2);
-      //Convert the bugger into an int variable (should I have used bool instead?)
-      go = atoi(go_buffer);
-
-      if (go == 1) {
-        digitalWrite(LED_BUILTIN, HIGH);
-        // get current time since startup
-        unsigned long currentMillis = millis();
-        unsigned long twinkleUntil = currentMillis + twinkleLength;
-        Serial.println(currentMillis);
-        // loop twinkle code for twinkleLength mills
-        while (currentMillis <= twinkleUntil) {
-          Serial.println("New tweet! Twinkle...");
-          twinkle();
-          currentMillis = millis();
-        }
-
-        turnPixelsOff();
-        digitalWrite(LED_BUILTIN, LOW);
-        Bridge.put("go", String(0));   // reset the new tweet 'go' variable to 0
-
-      } else {
-        delay(40); // or else wait a bit then check if there is a new tweet
-      }
+//      if (go == 1) {
+//        digitalWrite(LED_BUILTIN, HIGH);
+//        // get current time since startup
+//        unsigned long currentMillis = millis();
+//        unsigned long twinkleUntil = currentMillis + twinkleLength;
+//        Serial.println(currentMillis);
+//        // loop twinkle code for twinkleLength mills
+//        while (currentMillis <= twinkleUntil) {
+//          Serial.println("New tweet! Twinkle...");
+//          twinkle();
+//          currentMillis = millis();
+//        }
+//
+//        turnPixelsOff();
+//        digitalWrite(LED_BUILTIN, LOW);
+//        Bridge.put("go", String(0));   // reset the new tweet 'go' variable to 0
+//
+//      } else {
+//        delay(40); // or else wait a bit then check if there is a new tweet
+//      }
       break;
     case 3: //Off
       Serial.println("OFF STATE");

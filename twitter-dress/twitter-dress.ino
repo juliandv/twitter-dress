@@ -7,7 +7,7 @@
 // power Arduino Yun
 // wait 1-2 minutes for linux to boot and WiFi to connect (presuming previosuly connected WiFi is available)
 // restart the arduino side by double tapping the 32U4 button twice
-// after a few seconds, the streaming connection should be active and tweets will trigger the Neopixels
+// after about 15 seconds, the streaming connection should be active and tweets will trigger the Neopixels
 
 /**
  * Neopixel Library
@@ -82,9 +82,6 @@ void setup() {
   Serial.println("BEGIN SERIAL");
   pinMode(LED_BUILTIN, OUTPUT);
 
-//  pinMode(PHASE_1_BTN, INPUT_PULLUP);
-//  pinMode(PHASE_2_BTN, INPUT_PULLUP);
-
   strip_1.begin();
   strip_1.show();
 
@@ -99,9 +96,9 @@ void setup() {
 
 turnPixelsOff();
 
-  Bridge.begin(); // Initialize the Bridge Library
-  p.runShellCommand(kill_command);   // Kill all running python scripts if any
-  p.runShellCommandAsynchronously(python_command);
+//  Bridge.begin(); // Initialize the Bridge Library
+//  p.runShellCommand(kill_command);   // Kill all running python scripts if any
+//  p.runShellCommandAsynchronously(python_command);
 
 
   digitalWrite(LED_BUILTIN, HIGH);
