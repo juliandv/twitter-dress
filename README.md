@@ -2,7 +2,7 @@
 
 An e-textile dress which lights up depending on Tweets using a specific hashtag
 
-###Hardware
+### Hardware
 
 * Arduino Yun
 * Neopixel Flora
